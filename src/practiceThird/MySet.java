@@ -34,14 +34,14 @@ public class MySet {
         synchronizedSetExample.add("Element2");
         synchronizedSetExample.add("Element3");
 
-        System.out.println("Set size: " + synchronizedSetExample.size());
+        System.out.println("Установил размер: " + synchronizedSetExample.size());
 
         synchronizedSetExample.remove("Element2");
 
-        System.out.println("Set size after removal: " + synchronizedSetExample.size());
+        System.out.println("Размер после удаления: " + synchronizedSetExample.size());
 
-        System.out.println("Set contains Element1: " + synchronizedSetExample.contains("Element1"));
-        System.out.println("Set contains Element2: " + synchronizedSetExample.contains("Element2"));
+        System.out.println("Первый элемент: " + synchronizedSetExample.contains("Element1"));
+        System.out.println("Второй элемент: " + synchronizedSetExample.contains("Element2"));
     }
 }
 

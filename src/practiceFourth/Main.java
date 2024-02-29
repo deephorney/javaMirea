@@ -27,7 +27,7 @@ public class Main {
         try {
             taskQueue.put(task);
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            System.out.println(e);
         }
     }
 
@@ -57,10 +57,9 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             int taskNumber = i;
             executorService.submit(() -> {
-                System.out.println("Task " + taskNumber + " executed by thread " + Thread.currentThread().getName());
+                System.out.println("Работа " + taskNumber + " выполнился поток " + Thread.currentThread().getName());
             });
         }
-
         executorService.shutdown();
     }
 }
