@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+jar {
+    archiveFileName = 'app.jar'
+    manifest {
+        attributes 'Main-Class': 'org.example.Main'
+    }
+}
+
+task moveJar(type: Copy) {
+    def jarFile = jar.archiveFile.get()
+    def destinationDir = file("build/jars")
+    from jarFile
+    into destinationDir
+}
+
+task buildDockerImage(type: Exec) {
+    def dockerfile = file('build/jars/Dockerfile')
+    commandLine 'docker', 'build', '-t', 'app-image', '.'
+    workingDir dockerfile.parent
+}
+
+task runDocker(type: Exec) {
+    commandLine 'docker', 'run', '-d', '--name', 'container', 'app-image'
+    doLast {
+        exec {
+            commandLine 'docker', 'logs', 'container'
+        }
+    }
+}
+
+moveJar.dependsOn(jar)
+buildDockerImage.dependsOn(moveJar)
+runDocker.dependsOn(buildDockerImage)
