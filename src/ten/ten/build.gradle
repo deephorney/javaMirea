@@ -1,19 +1,25 @@
 plugins {
     id 'java'
-    id 'application' // Добавляем плагин application
-    id 'org.springframework.boot' version '3.2.3'
-    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'org.example'
-version = '0.0.1-SNAPSHOT'
-
-mainClassName = 'Main' // Указываем главный класс
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework:spring-core:5.3.16'
+    implementation 'org.springframework:spring-context:5.3.16'
 }
+
+
+task runApplication(type: JavaExec) {
+    main = '/Users/vladimirtolmach/Desktop/study/4sem/Java/practice/src/ten/ten/src/main/java/org/example/Main.java'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+
+
+
