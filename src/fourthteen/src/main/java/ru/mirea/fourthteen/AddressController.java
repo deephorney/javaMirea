@@ -1,25 +1,32 @@
 package ru.mirea.fourthteen;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Controller
 public class AddressController {
-    private List<Address> addresses;
 
-    public AddressController() {
-        this.addresses = new ArrayList<>();
+    private List<Address> addressList = new ArrayList<>();
+
+    @GetMapping("/addresses")
+    public String getAllAddresses(Model model) {
+        model.addAttribute("addresses", addressList);
+        return "address-list";
     }
 
-    public void createAddress(String addressText, String zipCode) {
-        Address address = new Address(addressText, zipCode);
-        addresses.add(address);
+    @PostMapping("/addresses")
+    public String createAddress(@ModelAttribute Address address) {
+        addressList.add(address);
+        return "redirect:/addresses";
     }
 
-    public void deleteAddress(Address address) {
-        addresses.remove(address);
-    }
-
-    public List<Address> getAllAddresses() {
-        return addresses;
+    @DeleteMapping("/addresses/{id}")
+    public String deleteAddress(@PathVariable int id) {
+        addressList.remove(id);
+        return "redirect:/addresses";
     }
 }
