@@ -1,7 +1,6 @@
 package ru.mirea.fourthteen;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,20 +12,26 @@ public class BuildingController {
     private List<Building> buildingList = new ArrayList<>();
 
     @GetMapping("/buildings")
-    public String getAllBuildings(Model model) {
-        model.addAttribute("buildings", buildingList);
-        return "building-list";
+    @ResponseBody
+    public String getAllBuildings() {
+        return buildingList.toString();
     }
 
     @PostMapping("/buildings")
-    public String createBuilding(@ModelAttribute Building building) {
+    @ResponseBody
+    public String createBuilding(@RequestBody Building building) {
         buildingList.add(building);
-        return "redirect:/buildings";
+        return "Building added: " + building.toString();
     }
 
     @DeleteMapping("/buildings/{id}")
+    @ResponseBody
     public String deleteBuilding(@PathVariable int id) {
-        buildingList.remove(id);
-        return "redirect:/buildings";
+        if (id >= 0 && id < buildingList.size()) {
+            buildingList.remove(id);
+            return "Building deleted with id: " + id;
+        } else {
+            return "Building not found with id: " + id;
+        }
     }
 }

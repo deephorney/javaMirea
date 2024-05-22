@@ -1,7 +1,6 @@
 package ru.mirea.fourthteen;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,20 +12,26 @@ public class AddressController {
     private List<Address> addressList = new ArrayList<>();
 
     @GetMapping("/addresses")
-    public String getAllAddresses(Model model) {
-        model.addAttribute("addresses", addressList);
-        return "address-list";
+    @ResponseBody
+    public String getAllAddresses() {
+        return addressList.toString();
     }
 
     @PostMapping("/addresses")
-    public String createAddress(@ModelAttribute Address address) {
+    @ResponseBody
+    public String createAddress(@RequestBody Address address) {
         addressList.add(address);
-        return "redirect:/addresses";
+        return "Address added: " + address.toString();
     }
 
     @DeleteMapping("/addresses/{id}")
+    @ResponseBody
     public String deleteAddress(@PathVariable int id) {
-        addressList.remove(id);
-        return "redirect:/addresses";
+        if (id >= 0 && id < addressList.size()) {
+            addressList.remove(id);
+            return "Address deleted with id: " + id;
+        } else {
+            return "Address not found with id: " + id;
+        }
     }
 }
