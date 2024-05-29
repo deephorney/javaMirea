@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c795f95f-ec02-409b-8646-9d85b1f5f22c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aboba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/aboba.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/vladimirtolmach/Desktop/Java/practice/src/twelve/twelve",
+    "last_opened_file_path": "/Users/vladimirtolmach/Desktop/study/4sem/Java/practice/src/twelve/twelve",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -172,6 +173,7 @@
       <workItem from="1716287415558" duration="1201000" />
       <workItem from="1716392538718" duration="1614000" />
       <workItem from="1716395469420" duration="36000" />
+      <workItem from="1716981598719" duration="99000" />
     </task>
     <servers />
   </component>
